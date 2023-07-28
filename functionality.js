@@ -1,6 +1,7 @@
 function Player1(name){
     this.name = name;
     this.winCharacter = 'X';
+    this.wins = 0;
 
     this.board = [
         ['', '', ''],
@@ -43,11 +44,21 @@ function Player1(name){
             (this.board[0][2] == this.winCharacter && this.board[0][2] == this.board[1][1] && this.board[1][1] == this.board[2][0]);
     }
 
+    this.win = function(){
+        const background = document.querySelector('.board-centered');
+        const popup = document.querySelector('.popup');
+        background.classList.add('board-centered-blur');
+        popup.classList.add('popup-visible');
+        const winner = document.querySelector('.insert-text');
+        winner.innerText = `${this.name} wins!`
+        this.wins += 1;
+    }
 }
 
 function Player2(name){
     this.name = name;
     this.winCharacter = 'O';
+    this.wins = 0;
 
     this.board = [
         ['', '', ''],
@@ -89,5 +100,15 @@ function Player2(name){
     this.checkDiagonal = function(){
         return (this.board[0][0] == this.winCharacter && this.board[0][0] == this.board[1][1] && this.board[1][1] == this.board[2][2]) || 
             (this.board[0][2] == this.winCharacter && this.board[0][2] == this.board[1][1] && this.board[1][1] == this.board[2][0]);
+    }
+
+    this.win = function(){
+        const background = document.querySelector('.board-centered');
+        const popup = document.querySelector('.popup');
+        background.classList.add('board-centered-blur');
+        popup.classList.add('popup-visible');
+        const winner = document.querySelector('.insert-text');
+        winner.innerText = `${this.name} wins!`
+        this.wins ++;
     }
 }
